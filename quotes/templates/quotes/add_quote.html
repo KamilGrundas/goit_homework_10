@@ -7,4 +7,8 @@
     {{ form.as_p }}
     <button type="submit">Add Quote</button>
 </form>
+<form action="{% url 'quotes:load_quotes' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="button">Load quotes data</button>
+</form>
 {% endblock %}

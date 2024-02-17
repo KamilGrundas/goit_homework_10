@@ -9,7 +9,7 @@ class Tag(models.Model):
     
 class Author(models.Model):
     fullname = models.CharField(max_length=50)
-    born_date = models.DateField() 
+    born_date = models.DateField(default = "2024-02-02") 
     born_location = models.CharField(max_length=50)
     description = models.TextField()
 

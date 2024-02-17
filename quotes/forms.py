@@ -3,20 +3,23 @@ from .models import Author, Quote
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
+
 class MyUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields= ['username', 'password1', 'password2']
+        fields = ["username", "password1", "password2"]
+
 
 class AuthorForm(ModelForm):
     class Meta:
         model = Author
-        fields = '__all__'
+        fields = "__all__"
+
 
 class QuoteForm(ModelForm):
     class Meta:
         model = Quote
-        fields = ['quote', 'author', 'tags']
+        fields = ["quote", "author", "tags"]
         widgets = {
-            'tags': CheckboxSelectMultiple,
+            "tags": CheckboxSelectMultiple,
         }

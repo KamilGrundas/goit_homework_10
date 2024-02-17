@@ -18,7 +18,8 @@
                         {% csrf_token %}
                         <button type="submit" class="button">Logout</button>
                     </form>
-                    <a href="{% url 'quotes:add_quote' %}" class="button" style="margin-left: 10px;">Dodaj cytat</a>
+                    <a href="{% url 'quotes:add_quote' %}" class="button" style="margin-left: 10px;">Add quote</a>
+                    <a href="{% url 'quotes:create_author' %}" class="button" style="margin-left: 10px;">Add author</a>
                 {% else %}
                     <a href="{% url 'quotes:user_login' %}" class="button">Login</a>
                 {% endif %}
