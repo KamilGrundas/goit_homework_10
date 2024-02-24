@@ -7,6 +7,10 @@ from django.contrib.auth.decorators import login_required
 import json
 from datetime import datetime
 
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
+
 
 def quotes_list(request):
     quotes = Quote.objects.all()
@@ -119,3 +123,12 @@ def load_quotes(request):
 def author_detail(request, author_id):
     author = get_object_or_404(Author, pk=author_id)
     return render(request, "quotes/author_detail.html", {"author": author})
+
+
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'quotes/password_reset.html'
+    email_template_name = 'quotes/password_reset_email.html'
+    html_email_template_name = 'quotes/password_reset_email.html'
+    success_url = reverse_lazy('quotes/password_reset_done')
+    success_message = "An email with instructions to reset your password has been sent to %(email)s."
+    subject_template_name = 'quotes/password_reset_subject.txt'
