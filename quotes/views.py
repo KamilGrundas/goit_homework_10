@@ -33,7 +33,7 @@ def register(request):
     return render(request, "quotes/register.html", {"form": form})
 
 
-@login_required(login_url="quotes:user_login")
+@login_required()
 def add_quote(request):
     if request.method == "POST":
         form = QuoteForm(request.POST)
@@ -65,7 +65,7 @@ def user_login(request):
     return render(request, "quotes/login.html", {"form": form})
 
 
-@login_required(login_url="quotes:user_login")
+@login_required()
 def create_author(request):
     if request.method == "POST":
         form = AuthorForm(request.POST)
@@ -77,7 +77,7 @@ def create_author(request):
     return render(request, "quotes/create_author.html", {"form": form})
 
 
-@login_required(login_url="quotes:user_login")
+@login_required()
 def load_authors(request):
     if request.method == "POST":
         json_file_path = "quotes/json_data/authors.json"
@@ -97,7 +97,7 @@ def load_authors(request):
         return redirect("quotes:quotes_list")
 
 
-@login_required(login_url="quotes:user_login")
+@login_required()
 def load_quotes(request):
     if request.method == "POST":
         json_file_path = "quotes/json_data/quotes.json"
@@ -126,9 +126,11 @@ def author_detail(request, author_id):
 
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
-    template_name = 'quotes/password_reset.html'
-    email_template_name = 'quotes/password_reset_email.html'
-    html_email_template_name = 'quotes/password_reset_email.html'
-    success_url = reverse_lazy('quotes/password_reset_done')
-    success_message = "An email with instructions to reset your password has been sent to %(email)s."
-    subject_template_name = 'quotes/password_reset_subject.txt'
+    template_name = "quotes/password_reset.html"
+    email_template_name = "quotes/password_reset_email.html"
+    html_email_template_name = "quotes/password_reset_email.html"
+    success_url = reverse_lazy("quotes/password_reset_done")
+    success_message = (
+        "An email with instructions to reset your password has been sent to %(email)s."
+    )
+    subject_template_name = "quotes/password_reset_subject.txt"
